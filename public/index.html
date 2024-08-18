@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<header>Helping Assistant Chatbot</header>
+<footer>Copyright© 2024</footer>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Chatbot</title>
+    <style>
+        header {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            top: 0cqmax;
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            position: fixed;
+            top: 100;
+            left: 100;
+        }
+        footer {
+            color: rgba(255, 255, 255, 0.477);
+            text-align: center;
+            bottom: 0cqmin;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: lighter;
+            position: fixed;
+            top: 100;
+            left: 100;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #518dbc;
+        }
+        .chat-container {
+            width: 90%;
+            max-width: 600px;
+            height: 80%;
+            max-height: 500px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #eadddd;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-box {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            border-bottom: 1px solid #ddd;
+        }
+        .chat-box p {
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .user-message {
+            background-color: #e1ffc7;
+            text-align: right;
+        }
+        .bot-message {
+            background-color: #f0f0f0;
+        }
+        .chat-input {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .chat-input button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        .chat-input button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-box" id="chatBox">
+            <!-- Chat messages will appear here -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        async function sendMessage() {
+            const userInput = document.getElementById('userInput').value;
+            const chatBox = document.getElementById('chatBox');
+
+            if (userInput.trim() === '') return;
+
+            // Display user message
+            const userMessage = document.createElement('p');
+            userMessage.className = 'user-message';
+            userMessage.textContent = userInput;
+            chatBox.appendChild(userMessage);
+
+            // Send message to server
+            const response = await fetch('/message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: userInput }),
+            });
+            const data = await response.json();
+
+            // Display bot response
+            const botMessage = document.createElement('p');
+            botMessage.className = 'bot-message';
+            botMessage.textContent = data.response;
+            chatBox.appendChild(botMessage);
+
+            // Scroll to the bottom of the chat
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // Clear user input
+            document.getElementById('userInput').value = '';
+        }
+    </script>
+</body>
+</html>
