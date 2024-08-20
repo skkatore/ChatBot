@@ -1,6 +1,5 @@
-version : "3.3"
-services :
-  web :
-     image : sohamkatore/chatbot1:latest
-     ports :
-         - "3000:3000"
+services:
+  web:
+    image: sohamkatore/chatbot1:latest
+    ports:
+      - "5000:5000"
