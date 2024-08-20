@@ -13,6 +13,7 @@ const responses = {
   'how are you': 'I’m doing great! How can I help you?',
   'your name': 'I’m your friendly chatbot!',
   'what is the weather': 'I’m not sure about the weather right now, but you can check a weather website!',
+  'who created you': 'I was created by Developer on 17Aug.'
 };
 
 app.post('/message', (req, res) => {

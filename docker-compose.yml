@@ -1,6 +1,5 @@
-version : "3.3"
-services :
-  web :
-     image : sohamkatore/my-note-app:latest
-     ports :
-         - "8000:8000"
+services:
+  web:
+    image: sohamkatore/chatbot1:latest
+    ports:
+      - "5000:5000"
