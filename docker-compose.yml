@@ -1,5 +1,5 @@
 services:
   web:
-    image: sohamkatore/chatbot1.2:latest
+    image: sohamkatore/chatbot1.1:latest
     ports:
       - "3000:3000"
