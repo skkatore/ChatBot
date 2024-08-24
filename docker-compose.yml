@@ -2,4 +2,4 @@ services:
   web:
     image: sohamkatore/chatbot1.2:latest
     ports:
-      - "5000:5000"
+      - "8000:8000"
